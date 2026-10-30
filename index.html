@@ -1,1 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jana</title>
+    <style>
+      :root {
+        --bg: #fffaf6;
+        --panel: rgba(255, 255, 255, 0.75);
+        --text: #2b1c1a;
+        --muted: #6f564f;
+        --accent: #f26ca7;
+        --accent-strong: #d93f8c;
+        --accent-soft: #ffd9ea;
+        --card: #fff;
+        --shadow: 0 24px 80px rgba(171, 93, 124, 0.18);
+      }
 
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(242, 108, 167, 0.2), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(255, 201, 222, 0.9), transparent 30%),
+          var(--bg);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0 28px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.82rem;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--accent), #ff9bbd);
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      nav {
+        display: flex;
+        gap: 24px;
+        font-size: 0.96rem;
+      }
+
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+        padding: 36px 0 20px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(3.3rem, 6vw, 6rem);
+        line-height: 0.96;
+        margin: 18px 0 16px;
+        letter-spacing: -0.06em;
+      }
+
+      .description {
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 600px;
+        margin-bottom: 28px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .button {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 14px 22px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+        color: white;
+        box-shadow: 0 16px 36px rgba(217, 63, 140, 0.28);
+      }
+
+      .secondary {
+        border: 1px solid rgba(217, 63, 140, 0.18);
+        color: var(--accent-strong);
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .showcase {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(242, 108, 167, 0.12);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .portrait {
+        background: linear-gradient(135deg, #ffe4f0, #fff9d0 55%, #ffe4da);
+        border-radius: 24px;
+        min-height: 420px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+      }
+
+      .portrait::before,
+      .portrait::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      .portrait::before {
+        width: 220px;
+        height: 220px;
+        right: -40px;
+        top: -40px;
+      }
+
+      .portrait::after {
+        width: 180px;
+        height: 180px;
+        left: -30px;
+        bottom: -35px;
+      }
+
+      .initial {
+        position: relative;
+        z-index: 1;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--accent-strong), #ff9bbd);
+        color: white;
+        font-size: 7rem;
+        font-weight: 700;
+        box-shadow: 0 28px 70px rgba(206, 91, 152, 0.26);
+        margin-bottom: 32px;
+      }
+
+      .note {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 18px;
+        background: var(--card);
+        border-radius: 18px;
+        padding: 14px 16px;
+        box-shadow: 0 14px 30px rgba(106, 57, 85, 0.08);
+      }
+
+      .note strong {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+
+      .note span {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .section {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .info-card {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(242, 108, 167, 0.1);
+        border-radius: 24px;
+        padding: 26px 22px;
+      }
+
+      .info-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ffe3f2, #fff4d4);
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      .info-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .info-card p {
+        margin: 0;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        header {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        nav {
+          gap: 14px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero,
+        .section {
+          grid-template-columns: 1fr;
+        }
+
+        .portrait {
+          min-height: 340px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="brand">
+          <div class="brand-mark">J</div>
+          Jana
+        </div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#story">Story</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <div>
+          <div class="eyebrow">Hello, beautiful soul</div>
+          <h1>Jana</h1>
+          <p class="description">
+            A warm, vibrant spirit full of creativity, kindness, and light. This page celebrates the beauty,
+            energy, and heart that make Jana unforgettable.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#about">Discover More</a>
+            <a class="button secondary" href="#story">Read Her Story</a>
+          </div>
+        </div>
+
+        <div class="showcase">
+          <div class="portrait">
+            <div class="initial">J</div>
+          </div>
+          <div class="note">
+            <div>
+              <strong>Signature vibe</strong>
+              <span>Grace + Glow</span>
+            </div>
+            <span>♡</span>
+          </div>
+        </div>
+      </main>
+
+      <section id="about" class="section">
+        <article class="info-card">
+          <div class="icon">✦</div>
+          <h3>Radiant</h3>
+          <p>Jana brings a bright energy that fills every room with warmth, charm, and confidence.</p>
+        </article>
+
+        <article id="story" class="info-card">
+          <div class="icon">❤</div>
+          <h3>Kind</h3>
+          <p>Her heart is as generous as her smile, making every connection feel sincere and uplifting.</p>
+        </article>
+
+        <article id="contact" class="info-card">
+          <div class="icon">✉</div>
+          <h3>Unforgettable</h3>
+          <p>Jana inspires love, creativity, and joy through every moment she shares with the world.</p>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
